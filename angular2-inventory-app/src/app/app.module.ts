@@ -6,7 +6,6 @@ import {AppRoutes} from './app.routing';
 
 
 import { AppComponent } from './app.component';
-import { InventoryComponent } from './inventory/inventory.component';
 import { AddInventoryComponent } from './add-inventory/add-inventory.component';
 import { GetInventoryComponent } from './get-inventory/get-inventory.component';
 import { UpdateInventoryComponent } from './update-inventory/update-inventory.component';
@@ -17,7 +16,6 @@ import { GetInventoryListComponent } from './get-inventory-list/get-inventory-li
 @NgModule({
   declarations: [
     AppComponent,
-    InventoryComponent,
     AddInventoryComponent,
     GetInventoryComponent,
     UpdateInventoryComponent,
