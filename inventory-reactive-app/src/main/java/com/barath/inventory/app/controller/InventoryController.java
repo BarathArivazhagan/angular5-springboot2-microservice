@@ -32,8 +32,8 @@ public class InventoryController {
 
 
     @PostMapping
-    public Mono<Inventory> saveInventory(@RequestBody Mono<Inventory> inventory) {
-        LOGGER.info("Calling the Inventory Service saveInventory Method");
+    public Mono<Inventory> saveInventory(final @RequestBody Mono<Inventory> inventory) {
+        LOGGER.info(" save inventory");
         return inventoryService.addInventory(inventory);
 
     }
@@ -41,23 +41,23 @@ public class InventoryController {
     @GetMapping(value = "/all")
     public Flux<Inventory> getInventories() {
 
-        LOGGER.info("Get all the inventories");
+        LOGGER.info("get all the inventories");
         return inventoryService.getInventories();
 
     }
 
     @GetMapping(value = "/getByProductName/{productName}")
-    public Flux<Inventory> getByProductName(@PathVariable String productName) {
-        LOGGER.info("Calling the Inventory Service getByproductName method");
-        //return inventoryService.getByProductName(productName);
-        return Flux.empty();
+    public Flux<Inventory> getByProductName(final @PathVariable String productName) {
+        LOGGER.info("get inventory by product name {} ", productName);
+        return inventoryService.getInventoryByProductName(productName);
+
     }
 
     @GetMapping(value = "/getByLocationName/{locationName}")
-    public Flux<Inventory> getByLocationName(@PathVariable String locationName) {
-        LOGGER.info("Calling the Inventory Service getBylocationName method");
-        //eturn inventoryService.getByLocationName(locationName);
-        return Flux.empty();
+    public Flux<Inventory> getByLocationName(final @PathVariable String locationName) {
+        LOGGER.info("get inventory by location name {} ", locationName);
+        return inventoryService.getInventoryByLocationName(locationName);
+
     }
 
 

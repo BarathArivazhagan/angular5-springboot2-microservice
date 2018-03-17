@@ -43,6 +43,16 @@ public class InventoryService {
         return Flux.fromIterable(inventoryRepository.findAll()).log();
     }
 
+    public Flux<Inventory> getInventoryByProductName(final String productName){
+
+        return Flux.fromIterable(inventoryRepository.findByProductName(productName)).log();
+    }
+
+    public Flux<Inventory> getInventoryByLocationName(final String locationName){
+
+        return Flux.fromIterable(inventoryRepository.findByLocationName(locationName)).log();
+    }
+
     @PostConstruct
     public void init(){
 
