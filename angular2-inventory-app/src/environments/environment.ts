@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  appServiceUrl: 'http://localhost:9000'
+  appServiceUrl: 'http://localhost:9000/api/inventory'
 };

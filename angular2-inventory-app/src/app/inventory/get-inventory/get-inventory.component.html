@@ -1,3 +1,18 @@
-<p>
-  get-inventory works!
-</p>
+<div>
+<table style="width:100%">
+  <tr>
+    <th>S.NO</th>
+    <th>PRODUCT NAME</th> 
+    <th>LOCATION NAME</th>
+     <th>QUANTITY</th>
+  </tr>
+  <tr *ngFor="let inventory of inventories ; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{inventory.productName}}</td>
+    <td>{{inventory.locationName}}</td> 
+    <td>{{inventory.quantity}}</td>
+  </tr>
+ 
+</table>
+
+</div>

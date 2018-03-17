@@ -17,6 +17,7 @@ import reactor.core.publisher.Mono;
 /**
  * Created by barath on 17/03/18.
  */
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/inventory")
 public class InventoryController {

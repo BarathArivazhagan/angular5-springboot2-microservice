@@ -2,13 +2,17 @@ package com.barath.inventory.app.service;
 
 import com.barath.inventory.app.entities.Inventory;
 import com.barath.inventory.app.repository.InventoryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.PostConstruct;
+import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -17,6 +21,7 @@ import java.util.stream.Stream;
 @Service
 public class InventoryService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private InventoryRepository inventoryRepository;
 
@@ -27,6 +32,7 @@ public class InventoryService {
     public Mono<Inventory> addInventory(Mono<Inventory> inventoryMono){
 
         return inventoryMono.doOnNext( inventory -> {
+            LOGGER.info("inventory {}",inventory);
             inventoryRepository.save(inventory);
         }).log();
     }
@@ -40,13 +46,8 @@ public class InventoryService {
     @PostConstruct
     public void init(){
 
-        Flux.fromIterable(
-                             Arrays.asList(
-                                 Mono.just(new Inventory("TV","CHENNAI",10)),
-                                 Mono.just( new Inventory("TV","BANGALORE",10)),
-                                 Mono.just( new Inventory("TV","DELHI",10))
-                             )
-
-        ).doOnNext(this::addInventory);
+       Arrays.asList(new Inventory("TV","CHENNAI",10),
+               new Inventory("TV","BANGALORE",10),
+               new Inventory("TV","DELHI",10)).stream().forEach(this.inventoryRepository::save);
     }
 }
