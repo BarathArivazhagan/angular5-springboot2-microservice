@@ -3,8 +3,6 @@ package com.barath.inventory.app.controller;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import com.barath.inventory.app.entities.Inventory;
-import com.barath.inventory.app.service.InventoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+
+import com.barath.inventory.app.entities.Inventory;
+import com.barath.inventory.app.service.InventoryService;
 
 
 /**
@@ -59,18 +61,5 @@ public class InventoryController {
         return inventoryService.getInventoryByLocationName(locationName);
 
     }
-
-
-
-
-
-    @RequestMapping(value = "/inventory/updateQuantity", method = RequestMethod.PUT)
-    public Mono<Inventory> updateQuantity(@RequestBody Inventory inventory) {
-        LOGGER.info("The Inventory to be updated is: {} ", inventory);
-        int quantity = inventory.getQuantity();
-        //return inventoryservice.updateInventory(inventory.getProductName(), inventory.getLocationName(), quantity);
-        return Mono.empty();
-    }
-
 
 }
