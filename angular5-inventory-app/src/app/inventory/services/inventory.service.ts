@@ -15,14 +15,7 @@ export class InventoryService {
    constructor(private http: HttpClient) { }
 
   addInventory(inventory: Inventory) {
-    return this.http.post(environment.appServiceUrl + '/', inventory)
-      .subscribe(
-       data => {
-         console.log('Successful response' + data);
-       },
-      err => {
-        console.log('Something went wrong!');
-      });
+    return this.http.post(environment.appServiceUrl + '/', inventory);
   }
 
   getInventories(): Observable<any> {

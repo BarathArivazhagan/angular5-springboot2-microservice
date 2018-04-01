@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -26,40 +28,58 @@ public class InventoryController {
 
     protected InventoryService inventoryService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public InventoryController(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
     }
 
 
-    @PostMapping
+    @PostMapping(value = "/")
     public Mono<Inventory> saveInventory(final @RequestBody Mono<Inventory> inventory) {
-        LOGGER.info(" save inventory");
+
+        if (logger.isInfoEnabled() ) logger.info(" save inventory");
         return inventoryService.addInventory(inventory);
 
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/")
     public Flux<Inventory> getInventories() {
 
-        LOGGER.info("get all the inventories");
+        if (logger.isInfoEnabled() ) logger.info("get all the inventories");
         return inventoryService.getInventories();
 
     }
 
     @GetMapping(value = "/getByProductName/{productName}")
     public Flux<Inventory> getByProductName(final @PathVariable String productName) {
-        LOGGER.info("get inventory by product name {} ", productName);
+
+        if (logger.isInfoEnabled() ) logger.info("get inventory by product name {} ", productName);
         return inventoryService.getInventoryByProductName(productName);
 
     }
 
     @GetMapping(value = "/getByLocationName/{locationName}")
     public Flux<Inventory> getByLocationName(final @PathVariable String locationName) {
-        LOGGER.info("get inventory by location name {} ", locationName);
+
+        if (logger.isInfoEnabled() ) logger.info("get inventory by location name {} ", locationName);
         return inventoryService.getInventoryByLocationName(locationName);
 
+    }
+
+    @GetMapping(value = "/getByLocationAndProduct")
+    public Mono<Inventory> getByLocationNameAndProductName(final @RequestParam("locationName") String locationName,final @RequestParam("productName") String productName) {
+
+        if (logger.isInfoEnabled() ) logger.info("get inventory by product name {} and location name {} ",productName,locationName);
+        return inventoryService.getByLocationAndProductName(locationName,productName);
+
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity handleError(Exception ex){
+
+        logger.error(" error {} ",ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
 }

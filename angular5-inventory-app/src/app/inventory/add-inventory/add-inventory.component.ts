@@ -18,7 +18,13 @@ export class AddInventoryComponent implements OnInit {
     console.log('Template-driven form submitted: ', form.value);
     const inventoryBody = form.value;
     console.log('LOG ' + JSON.stringify(inventoryBody));
-    const inventory = this.inventoryService.addInventory(inventoryBody);
+    this.inventoryService.addInventory(inventoryBody).subscribe(
+       data => {
+         console.log('Successful response' + data);
+       },
+      err => {
+        console.log('Something went wrong!');
+      });
   }
 
   ngOnInit() {

@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * Created by barath on 17/03/18.
  */
 @Entity
-@Table(name = "inventory")
+@Table(name = "INVENTORY")
 @IdClass(InventoryId.class)
 public class Inventory implements Serializable {
 

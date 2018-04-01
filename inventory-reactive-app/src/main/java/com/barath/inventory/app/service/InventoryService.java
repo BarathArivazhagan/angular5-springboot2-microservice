@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 @Service
 public class InventoryService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private InventoryRepository inventoryRepository;
 
@@ -29,10 +29,9 @@ public class InventoryService {
         this.inventoryRepository = inventoryRepository;
     }
 
-    public Mono<Inventory> addInventory(Mono<Inventory> inventoryMono){
-
+    public Mono<Inventory> addInventory(final Mono<Inventory> inventoryMono){
         return inventoryMono.doOnNext( inventory -> {
-            LOGGER.info("inventory {}",inventory);
+            logger.info("inventory {}",inventory);
             inventoryRepository.save(inventory);
         }).log();
     }
@@ -52,6 +51,13 @@ public class InventoryService {
 
         return Flux.fromIterable(inventoryRepository.findByLocationName(locationName)).log();
     }
+
+    public Mono<Inventory> getByLocationAndProductName(final String locationName, final String productName){
+
+        return  Mono.just(inventoryRepository.findByProductNameAndLocationName(productName,locationName)).log();
+    }
+
+
 
     @PostConstruct
     public void init(){
