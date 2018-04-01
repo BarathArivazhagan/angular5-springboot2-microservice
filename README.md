@@ -1,10 +1,6 @@
 # angular2-springboot-microservice
 
-1. SpringBoot Microservice
-2. Angular2 Application
+1. spring-boot-2 microservice
+2. angular-5-application
 
 
-Action items:
-
-update microservice
-arrange angular application
