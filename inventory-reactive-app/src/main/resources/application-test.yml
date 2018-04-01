@@ -1,8 +1,8 @@
 spring:
     datasource:
-        url: ${vcap.services.cleardb.credentials.jdbcUrl}
-        username: ${vcap.services.cleardb.credentials.username}
-        password: ${vcap.services.cleardb.credentials.password}
+        url: jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/ad_468a257d7197ff2?user=bd585039c1b141&password=d81a8552
+        username: bd585039c1b141
+        password: d81a8552
         driver-class-name: com.mysql.jdbc.Driver
     application:
       name: inventory-reactive-service

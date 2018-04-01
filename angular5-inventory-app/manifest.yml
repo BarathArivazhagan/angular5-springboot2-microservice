@@ -1,0 +1,5 @@
+---
+applications:
+- name: angular5-inventory-app
+  memory: 512M
+  buildpack: staticfile_buildpack

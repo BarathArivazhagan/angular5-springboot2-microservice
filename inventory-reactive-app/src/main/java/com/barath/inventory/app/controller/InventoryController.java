@@ -26,9 +26,9 @@ import com.barath.inventory.app.service.InventoryService;
 @RequestMapping("/api/inventory")
 public class InventoryController {
 
-    protected InventoryService inventoryService;
-
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    private final InventoryService inventoryService;
 
     public InventoryController(InventoryService inventoryService) {
         this.inventoryService = inventoryService;

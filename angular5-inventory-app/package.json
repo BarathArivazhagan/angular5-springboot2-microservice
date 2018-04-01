@@ -8,8 +8,9 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
+    "e2e": "ng e2e",
+    "dist": "ng build --prod && cp manifest.yml src/static/Staticfile dist"
+ },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.2.1",

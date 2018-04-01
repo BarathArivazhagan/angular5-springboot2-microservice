@@ -19,7 +19,7 @@ export class InventoryService {
   }
 
   getInventories(): Observable<any> {
-   return this.http.get(environment.appServiceUrl + '/all');
+   return this.http.get(environment.appServiceUrl + '/');
    }
 
 }
